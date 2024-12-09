@@ -17,10 +17,12 @@ const AddRecipe = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const REACT_BACKEND = "https://mcr-fs-backend.vercel.app"
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4001/recipes", {
+      await axios.post(`${REACT_BACKEND}/recipes`, {
         ...formData,
       });
       setMessage("Recipe added successfully!")
@@ -34,10 +36,10 @@ const AddRecipe = () => {
     <>
     <Header />
     <div className="container py-3">
-      <h2>Add a New Recipe</h2>
+      <h2>Add Recipe</h2>
       <form className="col-md-6" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Name</label>
+          <label className="form-label">Name:</label>
           <input
             type="text"
             className="form-control"
@@ -48,7 +50,7 @@ const AddRecipe = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Cuisine Type</label>
+          <label className="form-label">Cuisine Type:</label>
           <input
             type="text"
             className="form-control"
@@ -59,7 +61,7 @@ const AddRecipe = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Image Link</label>
+          <label className="form-label">Image Link:</label>
           <input
             type="text"
             className="form-control"
@@ -69,7 +71,7 @@ const AddRecipe = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Ingredients</label>
+          <label className="form-label">Ingredients:</label>
           <input
             type="text"
             className="form-control"
@@ -80,7 +82,7 @@ const AddRecipe = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Instructions</label>
+          <label className="form-label">Instructions:</label>
           <textarea
             className="form-control"
             name="instructions"

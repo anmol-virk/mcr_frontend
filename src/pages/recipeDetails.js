@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "./Header";
 
 const RecipeDetails = () => {
     const {id} = useParams()
@@ -8,9 +9,11 @@ const RecipeDetails = () => {
     const [recipe, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true)
 
+    const REACT_BACKEND = "https://mcr-fs-backend.vercel.app"
+
   const fetchRecipeDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:4001/recipes/${id}`);
+      const response = await axios.get(`${REACT_BACKEND}/recipes/${id}`);
       setRecipes(response.data.recipe);
       console.log(response)
       setLoading(false)
@@ -25,6 +28,8 @@ const RecipeDetails = () => {
   }, [id]);
   
   return(
+    <>
+    <Header />
     <div className="container py-4">
         <h1>{recipe.name}</h1>
    <div className="card mb-3" >
@@ -44,6 +49,7 @@ const RecipeDetails = () => {
   </div>
 </div>
     </div>
+    </>
   )
 
 }

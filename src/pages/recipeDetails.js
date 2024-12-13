@@ -9,11 +9,11 @@ const RecipeDetails = () => {
     const [recipe, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true)
 
-    const REACT_BACKEND = "https://mcr-fs-backend.vercel.app"
-
+    const REACT_BACKEND_KEY = process.env.REACT_APP_BACKEND_URL
+    
   const fetchRecipeDetails = async () => {
     try {
-      const response = await axios.get(`${REACT_BACKEND}/recipes/${id}`);
+      const response = await axios.get(`${REACT_BACKEND_KEY}/recipes/${id}`);
       setRecipes(response.data.recipe);
       console.log(response)
       setLoading(false)

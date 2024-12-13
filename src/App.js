@@ -11,11 +11,11 @@ function App() {
    const [recipies, setRecipe] = useState([])
    const [search, setSearch] = useState("")
 
-   const REACT_BACKEND = "https://mcr-fs-backend.vercel.app"
+   const REACT_BACKEND_KEY = process.env.REACT_APP_BACKEND_URL
 
  const fetchRecipes = async () => {
     try {
-        const response = await axios.get(`${REACT_BACKEND}/recipes`)
+        const response = await axios.get(`${REACT_BACKEND_KEY}/recipes`)
         setRecipe(response.data.recipes)
         console.log(response)
     } catch(error){
@@ -28,7 +28,7 @@ function App() {
 
   const deleteHandle = async (id) => {
     try {
-      await axios.delete(`${REACT_BACKEND}/recipes/${id}`);
+      await axios.delete(`${REACT_BACKEND_KEY}/recipes/${id}`);
       setRecipe((prevRecipes) => prevRecipes.filter((recipe) => recipe._id !== id));
       console.log("Recipe deleted successfully!")
     } catch (error) {

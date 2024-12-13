@@ -17,12 +17,12 @@ const AddRecipe = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const REACT_BACKEND = "https://mcr-fs-backend.vercel.app"
-
+  const REACT_BACKEND_KEY = process.env.REACT_APP_BACKEND_URL
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${REACT_BACKEND}/recipes`, {
+      await axios.post(`${REACT_BACKEND_KEY}/recipes`, {
         ...formData,
       });
       setMessage("Recipe added successfully!")
